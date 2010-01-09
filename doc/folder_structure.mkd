@@ -10,35 +10,42 @@
   <tr>
     <td>C and ASM</td>
     <td>/kernelsrc</td>
+    <td></td>
   </tr>
 
   <tr>
     <td>Header files</td>
     <td>/kernelsrc/inc</td>
+    <td></td>
   </tr>
 
   <tr>
     <td>Lua API</td>
     <td>/kernelsrc/lua</td>
+    <td></td>
   </tr>
 
   <tr>
     <td>Grub Binaries</td>
     <td>/bin</td>
+    <td></td>
   </tr>
   
   <tr>
     <td>Misc. Binaries</td>
     <td>/bin</td>
+    <td></td>
   </tr>
 
   <tr>
     <td>Kernel Mode Scripts</td>
     <td>/build/init</td>
+    <td></td>
   </tr>
 
   <tr>
     <td>Service Mode Scripts</td>
     <td>/build/service</td>
+    <td></td>
   </tr>
 </table>
