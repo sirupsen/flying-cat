@@ -2,9 +2,9 @@
 
 <table>
   <tr>
-    <td>*What?*</td>
-    <td>*Where?*</td>
-    <td>*Comment*</td>
+    <td><b>What?</b></td>
+    <td><b>Where?</b></td>
+    <td><b>Comment</b></td>
   </tr>
 
   <tr>
