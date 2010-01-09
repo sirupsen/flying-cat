@@ -1,0 +1,44 @@
+# Folder Structure
+
+<table>
+  <tr>
+    <td>What?</td>
+    <td>Where?</td>
+    <td>Comment</td>
+  </tr>
+
+  <tr>
+    <td>C and ASM</td>
+    <td>/kernelsrc</td>
+  </tr>
+
+  <tr>
+    <td>Header files</td>
+    <td>/kernelsrc/inc</td>
+  </tr>
+
+  <tr>
+    <td>Lua API</td>
+    <td>/kernelsrc/lua</td>
+  </tr>
+
+  <tr>
+    <td>Grub Binaries</td>
+    <td>/bin</td>
+  </tr>
+  
+  <tr>
+    <td>Misc. Binaries</td>
+    <td>/bin</td>
+  </tr>
+
+  <tr>
+    <td>Kernel Mode Scripts</td>
+    <td>/build/init</td>
+  </tr>
+
+  <tr>
+    <td>Service Mode Scripts</td>
+    <td>/build/service</td>
+  </tr>
+</table>
