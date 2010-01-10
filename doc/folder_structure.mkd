@@ -24,17 +24,17 @@
     <td>/kernelsrc/lua</td>
     <td></td>
   </tr>
-
-  <tr>
-    <td>Grub Binaries</td>
-    <td>/bin</td>
-    <td></td>
-  </tr>
   
   <tr>
     <td>Misc. Binaries</td>
     <td>/bin</td>
     <td></td>
+  </tr>
+
+  <tr>
+    <td>Build</td>
+    <td>/build</td>
+    <td>The contents of this folder can be copied to a bootable medium and booted once GRUB is installed</td>
   </tr>
 
   <tr>
