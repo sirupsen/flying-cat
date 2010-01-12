@@ -1,3 +1,7 @@
 # Milestones
 
 * **Start of project** - Jan 10 2009
+* Boot from GRUB
+* Hello World from C kernel
+* Bind to Lua
+* Hello World from Lua kernel
