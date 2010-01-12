@@ -28,22 +28,22 @@
 #define LUA_ANSI
 #endif
 
-
+/*
 #if !defined(LUA_ANSI) && defined(_WIN32)
 #define LUA_WIN
 #endif
 
 #if defined(LUA_USE_LINUX)
 #define LUA_USE_POSIX
-#define LUA_USE_DLOPEN		/* needs an extra library: -ldl */
-#define LUA_USE_READLINE	/* needs some extra libraries */
+#define LUA_USE_DLOPEN		// needs an extra library: -ldl
+#define LUA_USE_READLINE	// needs some extra libraries
 #endif
 
 #if defined(LUA_USE_MACOSX)
 #define LUA_USE_POSIX
-#define LUA_DL_DYLD		/* does not need extra library */
+#define LUA_DL_DYLD		// does not need extra library
 #endif
-
+*/
 
 
 /*

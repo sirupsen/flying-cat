@@ -1,6 +1,5 @@
 #include "inc/consts.h"
 #include "inc/multiboot.h"
-#include "lua/lua.h"
 
 void println(char* s, short line)
 {
