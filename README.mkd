@@ -12,7 +12,7 @@ The following software is required to successfully build Flying Cat
 * mkfs
 * mkfs.vfat
 * GRUB
-* sudo (the build script is editable to remove the sudo dependancy, however it then must be run as root)
+* sudo (the build script is editable to remove the sudo dependency, however it then must be run as root)
 
 Additionally, your system must support loopback devices and some parts of the `build.sh` build script require superuser privileges.
 
