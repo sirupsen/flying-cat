@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Source tree cleanup"
+rm -r *~
+
 echo "Kernel Compilation:"
 echo "    -   Assembling bootloader..."
 nasm -i "kernelsrc/" -f elf -o kernelbin/loader.o kernelsrc/loader.asm
