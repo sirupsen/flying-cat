@@ -9,8 +9,4 @@ echo "    -   Linking..."
 #ld -T kernel_src/linker.ld -o kernel_bin/os.bin kernel_bin/loader.o kernel_bin/kernel.o
 ld -o kernelbin/os.bin kernelbin/loader.o kernelbin/kernel.o
 
-echo "Bootdisk Preparation"
-echo "    -   Creating Bootdisk"
-cat bin/grub/stage1 bin/grub/stage2 bin/grub/pad kernelbin/os.bin > floppy.img
-
 echo "Done."

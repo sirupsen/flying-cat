@@ -34,7 +34,6 @@ int main(int argc, char* argv[])
 	for(i = 0; i < t; i++)
 		fputc((char)n, f);
 		
-	printf("Done\n");
 	fclose(f);
 	
 	return 0;

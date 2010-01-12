@@ -39,5 +39,6 @@ int main(int argc, char* argv[])
 		fputc(c, d);
 	}
 	
-	printf("Done\n");
+	fclose(s);
+	fclose(d);
 }
