@@ -13,6 +13,8 @@ The following software is required to successfully build Flying Cat
 * GRUB
 * sudo (the build script is editable to remove the sudo dependancy, however it then must be run as root)
 
+Additionally, your system must support loopback devices and some parts of the `build.sh` build script require superuser privileges.
+
 ## Running Flying Cat
 Flying Cat is built as a floppy disk image which can be run in a Virtual Machine or written to a physical floppy disk to be booted from.
 
