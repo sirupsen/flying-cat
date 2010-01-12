@@ -2,3 +2,18 @@ Project Flying Cat
 ==================
 
 A modular, lua-based operating system project.
+
+## Building Flying Cat
+The following software is required to successfully build Flying Cat
+* NASM
+* GCC
+* LD
+* mkfs
+* mkfs.vfat
+* GRUB
+* sudo (the build script is editable to remove the sudo dependancy, however it then must be run as root)
+
+## Running Flying Cat
+Flying Cat is built as a floppy disk image which can be run in a Virtual Machine or written to a physical floppy disk to be booted from.
+
+Naturally, any VM software should be able to run Flying Cat, although the included `run.sh` script is designed for QEMU.
