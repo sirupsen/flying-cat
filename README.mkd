@@ -8,12 +8,12 @@ By [Turbsen](http://turbsen.info "Go to website for Turbsen")
 ## Building Flying Cat
 The following software is required to successfully build Flying Cat:
 
-* [NASM](http://www.nasm.us/)
-* [GCC](http://gcc.gnu.org/)
+* [NASM](http://www.nasm.us/) (Assembly compiler)
+* [GCC](http://gcc.gnu.org/) (C compiler)
 * LD
-* [mkfs](http://en.wikipedia.org/wiki/Mkfs)
-* mkfs.vfat
-* [GRUB](http://www.gnu.org/software/grub/)
+* [mkfs](http://en.wikipedia.org/wiki/Mkfs) (creates filesystem)
+* mkfs.vfat (fat for mkfs)
+* [GRUB](http://www.gnu.org/software/grub/) (bootloader)
 * sudo (the build script is editable to remove the sudo dependency, however it then must be run as root)
 
 Additionally, your system must support loopback devices and some parts of the `build.sh` build script require superuser privileges.
