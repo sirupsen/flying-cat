@@ -8,12 +8,12 @@ By [Turbsen](http://turbsen.info "Go to website for Turbsen")
 ## Building Flying Cat
 The following software is required to successfully build Flying Cat
 
-* NASM
-* GCC
+* [NASM](http://www.nasm.us/)
+* [GCC](http://gcc.gnu.org/)
 * LD
-* mkfs
+* [mkfs](http://en.wikipedia.org/wiki/Mkfs)
 * mkfs.vfat
-* GRUB
+* [GRUB](http://www.gnu.org/software/grub/)
 * sudo (the build script is editable to remove the sudo dependency, however it then must be run as root)
 
 Additionally, your system must support loopback devices and some parts of the `build.sh` build script require superuser privileges.
@@ -26,4 +26,4 @@ Naturally, any VM software should be able to run Flying Cat, although the includ
 You should be able to get a boot going in QEMU by simply running:
 > ./run.sh
 
-Otherwise you want to run ./build.sh and manually mount the Floppy image in VM of choice.
+Otherwise you want to run `build.sh` and manually mount the floppy image in VM of choice.
