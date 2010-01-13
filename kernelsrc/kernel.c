@@ -22,7 +22,7 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
 	
 	// GRUB should have passed us 0x2BADB002 as well as the Multiboot info struct
 	// if it didn't, die.
-	if (magic != 0x2BADB003)
+	if (magic != 0x2BADB002)
 	{
 		// setup error string
 		char erra[] = OS_NAME " was not booted correctly.";
