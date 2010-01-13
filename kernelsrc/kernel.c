@@ -12,13 +12,17 @@ void println(char* s, short line)
 	}
 }
 
-void kmain(multiboot_info_t* mbi, unsigned int magic)
-{
-	// clear the screen
+void clearScreen() {
 	char* vram = (char*)(0xb8000+(80*25*2)-1);
 	while (vram >= 0xb8000)
 		*vram-- = 0;
 	vram++;
+}
+
+void kmain(multiboot_info_t* mbi, unsigned int magic)
+{
+	// clear the screen
+  clearScreen();
 	
 	// GRUB should have passed us 0x2BADB002 as well as the Multiboot info struct
 	// if it didn't, die.
