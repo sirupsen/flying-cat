@@ -18,10 +18,11 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
 	char* vram = (char*)(0xb8000+(80*25*2)-1);
 	while (vram >= 0xb8000)
 		*vram-- = 0;
+	vram++;
 	
 	// GRUB should have passed us 0x2BADB002 as well as the Multiboot info struct
 	// if it didn't, die.
-	if (magic != 0x2BADB002)
+	if (magic != 0x2BADB003)
 	{
 		// setup error string
 		char erra[] = OS_NAME " was not booted correctly.";
