@@ -6,7 +6,7 @@ A modular, lua-based operating system project.
 By [Turbsen](http://turbsen.info "Go to website for Turbsen")
 
 ## Building Flying Cat
-The following software is required to successfully build Flying Cat
+The following software is required to successfully build Flying Cat:
 
 * [NASM](http://www.nasm.us/)
 * [GCC](http://gcc.gnu.org/)
