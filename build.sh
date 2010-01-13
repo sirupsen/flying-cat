@@ -20,17 +20,17 @@ cp kernelbin/os.bin build/boot/fc_krnl
 echo "Creating bootdisk image:"
 echo "    -   Creating floppy image"
 bin/pad floppy.img 0 1474560
-echo "    -   Formatting to FAT"
+echo "    -   Formatting image to FAT"
 mkfs -t vfat floppy.img
-echo "    -   Mounting"
+echo "    -   Mounting image"
 rmdir mnt > /dev/null
 mkdir mnt
 sudo chown $USERNAME mnt
 sudo losetup /dev/loop0 floppy.img
 sudo mount -t vfat /dev/loop0 mnt
-echo "    -   Copying files"
+echo "    -   Copying files to image"
 sudo cp -r build/* mnt
-echo "    -   Unmounting"
+echo "    -   Unmounting image"
 sudo umount /dev/loop0
 sudo losetup -d /dev/loop0
 echo "    -   Installing GRUB"
