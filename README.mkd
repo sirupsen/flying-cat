@@ -19,4 +19,7 @@ Additionally, your system must support loopback devices and some parts of the `b
 ## Running Flying Cat
 Flying Cat is built as a floppy disk image which can be run in a Virtual Machine or written to a physical floppy disk to be booted from.
 
-Naturally, any VM software should be able to run Flying Cat, although the included `run.sh` script is designed for QEMU.
+Naturally, any VM software should be able to run Flying Cat, although the included `run.sh` script is designed for [QEMU](http://qemu.org, "Go to website for Qemu to download it").
+
+You should be able to get a boot going in QEMU by simply running:
+> ./run.sh
