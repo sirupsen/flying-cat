@@ -19,11 +19,13 @@ The following software is required to successfully build Flying Cat:
 Additionally, your system must support loopback devices and some parts of the `build.sh` build script require superuser privileges.
 
 ## Running Flying Cat
-Flying Cat is built as a floppy disk image which can be run in a Virtual Machine or written to a physical floppy disk to be booted from.
+Flying Cat is built as a floppy disk image which can be run in a Virtual Machine, or written to a physical floppy disk to be booted from.
 
 Naturally, any VM software should be able to run Flying Cat, although the included `run.sh` script is designed for [QEMU](http://qemu.org "Go to website for Qemu to download it").
 
 You should be able to get a boot going in QEMU by simply running:
-> ./run.sh
+> $ ./run.sh
 
-Otherwise you want to run `build.sh` and manually mount the floppy image in VM of choice.
+Otherwise you want to run `build.sh` and manually mount the image in VM of choice.
+
+Should you be unable to compile it yourself, you can use the precompiled `floppy.img` included in the source, note however, that this might not be the most recent build.
