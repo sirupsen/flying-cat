@@ -26,6 +26,6 @@ Naturally, any VM software should be able to run Flying Cat, although the includ
 You should be able to get a boot going in QEMU by simply running:
 > $ ./run.sh
 
-Otherwise you want to run `build.sh` and manually mount the image in VM of choice, other Virtual Machines include [Virtualbox](http://virtualbox.org) and [VMWare](http://vmware.com), note however that Flying Cat have *not* been tested in these.
+Otherwise you want to run `build.sh` and manually mount the image in VM of choice, other Virtual Machines include [Virtualbox](http://virtualbox.org) and [VMWare](http://vmware.com), note however that Flying Cat has *not* been tested in these.
 
 Should you be unable to compile it yourself, you can use the precompiled `floppy.img` included in the source, note however, that this might not be the most recent build.
