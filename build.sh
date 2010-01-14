@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Source tree cleanup"
+# Removing temp. gEdit files
 rm -r *~
 
 echo "Kernel Compilation:"
