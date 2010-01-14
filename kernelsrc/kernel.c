@@ -1,5 +1,6 @@
 #include "inc/consts.h"
 #include "inc/multiboot.h"
+#include "inc/panic.h"
  
 void println(char* s, short line)
 {
@@ -11,7 +12,7 @@ void println(char* s, short line)
 		*vram++ = 0x07; // light grey on black
 	}
 }
- 
+
 void kmain(multiboot_info_t* mbi, unsigned int magic)
 {
 	// clear the screen
@@ -22,20 +23,7 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
 	// GRUB should have passed us 0x2BADB002 as well as the Multiboot info struct
 	// if it didn't, die.
 	if (magic != 0x2BADB002)
-	{
-		// setup error string
-		char erra[] = OS_NAME " was not booted correctly.";
-		char* err = erra;
- 
-		// loop through err string until reaching 0x00 (null terminator)
-		while(*err)
-		{
-			*vram++ = *err++;
-			*vram++ = 0x4F; // white on dark red
-		}
- 
-		asm("hlt"); // halt cpu
-	}
+		panic(OS_NAME " was not booted correctly.");
  
 	// we booted successfully, so say hello world and dump some info
 	println("Hello, World!", 0);

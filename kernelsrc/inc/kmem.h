@@ -1,0 +1,3 @@
+#define KERNEL_MEMORY_START
+
+
