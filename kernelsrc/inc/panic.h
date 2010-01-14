@@ -1,6 +1,6 @@
 void panic(char* msg)
 {
-	char* vram = 0xb8000;
+	char* vram = (char*)0xb8000;
 
 	char* kp = "KERNEL PANIC";
 	while(*vram++ = *kp++)

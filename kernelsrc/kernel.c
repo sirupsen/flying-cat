@@ -1,6 +1,7 @@
 #include "inc/consts.h"
 #include "inc/multiboot.h"
 #include "inc/panic.h"
+#include "inc/kmem.h"
  
 void println(char* s, short line)
 {
@@ -17,7 +18,7 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
 {
 	// clear the screen
 	char* vram = (char*)(0xb8000+(80*25*2)-1);
-	while (vram >= 0xb8000)
+	while (vram >= (char*)0xb8000)
 		*vram-- = 0;
  
 	// GRUB should have passed us 0x2BADB002 as well as the Multiboot info struct
