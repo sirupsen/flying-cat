@@ -1,23 +1,10 @@
 #include "inc/consts.h"
 #include "inc/multiboot.h"
- 
-void println(char* s, short line)
-{
-	char* vram = (char*)(0xb8000 + (80*line*2));
- 
-	while(*s)
-	{
-		*vram++ = *s++;
-		*vram++ = 0x07; // light grey on black
-	}
-}
+#include "inc/scrn.h"
  
 void kmain(multiboot_info_t* mbi, unsigned int magic)
 {
-	// clear the screen
-	char* vram = (char*)(0xb8000+(80*25*2)-1);
-	while (vram >= 0xb8000)
-		*vram-- = 0;
+  k_clear_screen();
  
 	// GRUB should have passed us 0x2BADB002 as well as the Multiboot info struct
 	// if it didn't, die.
@@ -26,6 +13,7 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
 		// setup error string
 		char erra[] = OS_NAME " was not booted correctly.";
 		char* err = erra;
+    char* vram = (char*)0xb8000;
  
 		// loop through err string until reaching 0x00 (null terminator)
 		while(*err)
@@ -36,12 +24,12 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
  
 		asm("hlt"); // halt cpu
 	}
- 
-	// we booted successfully, so say hello world and dump some info
-	println("Hello, World!", 0);
-	println("This is Flying Cat (c) Turbsen 2010", 1);
-	println((char*)mbi->boot_loader_name, 3);
-	println((char*)mbi->cmdline, 4);
+
+  k_print("Hello, World!");
+  k_print("This is " OS_NAME " (c) Turbsen 2010\n");
+
+	k_print((char*)mbi->boot_loader_name);
+	k_print((char*)mbi->cmdline);
  
 	for(;;); // hang
 }
