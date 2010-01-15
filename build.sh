@@ -13,8 +13,7 @@ echo "    -   Assembling bootloader.."
 echo "    -   Compiling kernel.."
   gcc -o kernelbin/kernel.o -c kernelsrc/kernel.c -nostdlib -nostartfiles -nodefaultlibs #-masm=intel
 
-  echo "    -   Linking.."
-#ld -T kernel_src/linker.ld -o kernel_bin/os.bin kernel_bin/loader.o kernel_bin/kernel.o
+echo "    -   Linking.."
   ld -T kernelsrc/linker.ld -o kernelbin/os.bin kernelbin/loader.o kernelbin/kernel.o
 
 echo "    -   Copying to build/boot/fc_krnl.."
@@ -36,7 +35,10 @@ echo "    -   Copying files to image.."
 echo "    -   Unmounting image.."
   sudo umount /dev/loop0
   sudo losetup -d /dev/loop0
+echo "    - Cleaning up.."
+  rmdir mnt
 echo "    -   Installing GRUB.."
   cat grubscript | grub --device-map=/dev/null --batch
+
 
 echo "Done!"
