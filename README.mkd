@@ -10,7 +10,7 @@ The following software is required to successfully build Flying Cat:
 
 * [NASM](http://www.nasm.us/) (Assembler)
 * [GCC](http://gcc.gnu.org/) (C compiler)
-* LD
+* [LD](http://en.wikipedia.org/wiki/GNU_linker) (linker)
 * [mkfs](http://en.wikipedia.org/wiki/Mkfs) (creates filesystem)
 * mkfs.vfat (fat for mkfs)
 * [GRUB](http://www.gnu.org/software/grub/) (bootloader)
