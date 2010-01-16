@@ -25,3 +25,12 @@ char *strcpy(char *destination, const char *source)
   // Return the destination
   return destination;
 }
+
+char *strcat (char *destination, const char *source)
+{
+  // Let's just use these functions which we already defined
+  strcpy(destination + strlen(destination), source);
+
+  // Then return the destination
+  return destination;
+}
