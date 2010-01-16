@@ -3,7 +3,7 @@ int strlen(const char *str)
   unsigned int length;
 
   // For each character until \0, plus length with one
-  for (lenght = 0; *str != '\0'; str++) length++;
+  for (length = 0; *str != '\0'; str++) length++;
   // Return this length
   return length;
 }
