@@ -8,6 +8,7 @@ k_clear_screen() {
 k_print(char *message) {
   // Line number by default is 0
   static int line = 0;
+  // @todo I don't want to know what happens if the lins is > 24, make scroll stuff
   char* vram = (char*) (0xb8000 + (80 * line * 2));
 
   while(*message) {
