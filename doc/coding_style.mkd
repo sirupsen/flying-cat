@@ -2,12 +2,17 @@ Coding Style
 ============
 
 * Tabs, no spaces for indenting (only for aligning)
+
 * Blocks like this:<br/>
-if (...)<br/> 
-{<br/>
-  ...<br/>
-}<br/>
+    if (...)
+    {
+        ...
+    }
 
 * If possible, don't use braces (for while, for, if etc.)
+    if (...)
+        ...
+        
 * Always give functions return types
+
 * Use plenty of spaces, and comments
