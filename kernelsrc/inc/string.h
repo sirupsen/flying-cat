@@ -1,6 +1,8 @@
 #ifndef STRING_H
 #define STRING_H
 
+#include "kmem.h"
+
 int strlen(char* str)
 {
 	unsigned int length;

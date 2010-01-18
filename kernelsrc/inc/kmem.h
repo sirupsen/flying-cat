@@ -1,6 +1,8 @@
 #ifndef KMEM_H
 #define KMEM_H
 
+#include "panic.h"
+
 #define KERNEL_MEM_START	0x7E00
 #define KERNEL_MEM_END		0x7FFF
 

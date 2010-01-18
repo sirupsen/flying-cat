@@ -2,8 +2,6 @@
 #include "inc/multiboot.h"
 #include "inc/scrn.h"
 #include "inc/panic.h"
-#include "inc/kmem.h"
-#include "inc/string.h"
 
 void kmain(multiboot_info_t* mbi, unsigned int magic)
 {
