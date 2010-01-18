@@ -8,26 +8,35 @@ void k_clear_screen()
 		*vram-- = 0;
 }
 
-void k_print(char *message) 
+void k_printc(char* s, char color) 
 {
-	// Line number by default is 0
-	static int line = 0;
-	// @todo I don't want to know what happens if the lins is > 24, make scroll stuff
-	char* vram = (char*) (0xb8000 + (80 * line * 2));
+	static char col = 0; // we only need a byte to represent the col
+	static char row = 0; // ditto
 
-	while(*message) {
+	while(*s)
+	{
 		// If newline
-		if (*message == '\n') {
-			line++;
-			*message++;
-			// Not newline
-		} else {
-			*vram++ = *message++;
-			*vram++ = 0x07;
+		if (*s != '\n')
+		{
+			// setup a short pointer (short = 2 bytes) pointing to the char+attr
+			// bitshift the color to the higher byte of the short and add the character.
+			// (reverse order than normal since x86 uses the little endian format)
+			*(short*)(0xb8000 + (row * 80 + col++) * 2) = *s + (color<<8);
 		}
+			
+		if (*s == '\n' || col == 80)
+		{
+			row++;
+			col = 0;
+		}
+		
+		s++;
 	}
+}
 
-	line++;
+void k_print(char* s)
+{
+	k_printc(s, 0x07);
 }
 
 #endif
