@@ -1,3 +1,6 @@
+#ifndef SYSCALL_H
+#define SYSCALL_H
+
 // Here's our minimal syscall functions. Newlib (a C std lib implementation) relies on these, but we don't want these to be implemented on the kernel level.
 
 int close(int file)
@@ -96,3 +99,5 @@ int write(int file, char* ptr, int len)
 {
 	return 0;
 }
+
+#endif

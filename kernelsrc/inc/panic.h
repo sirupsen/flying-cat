@@ -1,3 +1,6 @@
+#ifndef PANIC_H
+#define PANIC_H
+
 void panic(char* msg)
 {
 	char* vram = (char*)0xb8000;
@@ -14,3 +17,5 @@ void panic(char* msg)
 
 	asm("hlt"); // halt cpu
 }
+
+#endif

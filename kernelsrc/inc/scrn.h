@@ -1,3 +1,6 @@
+#ifndef SCRN_H
+#define SCRN_H
+
 void k_clear_screen() 
 {
 	char* vram = (char*)(0xb8000+(80*25*2) - 1);
@@ -26,3 +29,5 @@ void k_print(char *message)
 
 	line++;
 }
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef FLOAT_H
+#define FLOAT_H
+
 /* float.h */
 /* Produced by enquire version 5.1a, CWI, Amsterdam
    http://www.cwi.nl/~steven/enquire.html  */
@@ -62,4 +65,6 @@
 #define LDBL_MAX 1.18973149535723176502e+4932L
    /* Maximum int x such that 10**x is a representable long double */
 #define LDBL_MAX_10_EXP 4932
+
+#endif
 

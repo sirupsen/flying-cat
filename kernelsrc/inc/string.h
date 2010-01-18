@@ -1,14 +1,18 @@
-int strlen(const char *str)
+#ifndef STRING_H
+#define STRING_H
+
+int strlen(char* str)
 {
 	unsigned int length;
 
 	// For each character until \0, plus length with one
-	for (length = 0; *str != '\0'; str++) length++;
-	// Return this length
+	for (length = 0; *str != '\0'; str++)
+		length++;
+		
 	return length;
 }
 
-char *strcpy(char *destination, const char *source) 
+char *strcpy(char *destination, char *source) 
 {
 	unsigned int i;
 
@@ -26,11 +30,16 @@ char *strcpy(char *destination, const char *source)
 	return destination;
 }
 
-char *strcat (char *destination, const char *source)
+char *strcat (char* a, char* b)
 {
-	// Let's just use these functions which we already defined
-	strcpy(destination + strlen(destination), source);
+	unsigned int alen = strlen(a);
+	
+	char* s = malloc(alen + strlen(b) + 1);
+	strcpy(s, a);
+	strcpy(s+alen, b);
 
 	// Then return the destination
-	return destination;
+	return s;
 }
+
+#endif

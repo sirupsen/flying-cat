@@ -1,3 +1,6 @@
+#ifndef LIMITS_H
+#define LIMITS_H
+
 /* limits.h */
 /* Produced by enquire version 5.1a, CWI, Amsterdam
    http://www.cwi.nl/~steven/enquire.html  */
@@ -32,3 +35,5 @@
 #define UINT_MAX 4294967295U
    /* Maximum unsigned long (minimum is always 0) */
 #define ULONG_MAX 4294967295UL
+
+#endif
