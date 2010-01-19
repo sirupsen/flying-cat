@@ -14,10 +14,10 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
 		panic(OS_NAME " was not booted correctly.");
 
 	k_print("Hello, World!\n");
-	k_print("This is " OS_NAME " (c) Turbsen 2010\n");
+	k_print("This is " OS_NAME " (c) Turbsen 2010\n\n");
 
 	//k_print(strcat((char*)mbi->boot_loader_name, "\n"));
-	//k_print((char*)mbi->cmdline);
+	k_print((char*)mbi->cmdline);
 
 	for(;;); // hang
 }

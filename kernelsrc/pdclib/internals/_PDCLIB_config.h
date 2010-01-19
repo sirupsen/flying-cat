@@ -208,7 +208,9 @@ typedef char * _PDCLIB_va_list;
 
 /* A system call that terminates the calling process */
 void _exit( int status ) __attribute__(( noreturn ));
-#define _PDCLIB_Exit( x ) _exit( x )
+//#define _PDCLIB_Exit( x ) _exit( x )
+// ED: Flying Cat
+#define _PDCLIB_Exit( x ) for(;;) ;
 
 /* Memory management */
 
@@ -228,4 +230,4 @@ void _exit( int status ) __attribute__(( noreturn ));
    Return a (void *) pointing to the former end-of-heap if successful, NULL
    otherwise.
 */
-void * _PDCLIB_allocpages( int n );
+extern void * _PDCLIB_allocpages( int n );
