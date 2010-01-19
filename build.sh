@@ -10,13 +10,16 @@ echo "    -   Assembling bootloader.."
 nasm -i "kernelsrc/" -f elf -o kernelbin/loader.o kernelsrc/loader.asm
 
 echo "    -   Compiling pdclib.."
-make kernelsrc/pdclib/Makefile
+cd kernelsrc/pdclib
+make
+cd ../..
+cp kernelsrc/pdclib/pdclib.a kernelbin/pdclib.a
 
 echo "    -   Compiling kernel.."
 gcc -I "kernelsrc/pdclib/*/" -o kernelbin/kernel.o -c kernelsrc/kernel.c -nostdlib -nostartfiles -nodefaultlibs #-masm=intel
 
 echo "    -   Linking.."
-ld -T kernelsrc/linker.ld -o kernelbin/os.bin kernelbin/loader.o kernelbin/kernel.o
+ld -T kernelsrc/linker.ld -o kernelbin/os.bin kernelbin/loader.o kernelbin/kernel.o kernelbin/pdclib.a
 
 echo "    -   Copying to build/boot/fc_krnl.."
 cp kernelbin/os.bin build/boot/fc_krnl
