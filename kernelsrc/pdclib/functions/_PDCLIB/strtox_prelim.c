@@ -9,7 +9,7 @@
 */
 
 #include <ctype.h>
-#define NULL 0
+#define NULL (void*)0
 
 const char * _PDCLIB_strtox_prelim( const char * p, char * sign, int * base )
 {
