@@ -1,10 +1,7 @@
 #!/bin/bash
 
-# Removing temp. gEdit files only if they exist
-if [ -f *~ ]; then
-	rm -rf *~
-	echo "    -   Source tree cleanup.."
-fi 
+echo "    -   Source tree cleanup.."
+find -iname *~ -exec rm {} \;
 
 echo "    -   Assembling bootloader.."
 nasm -i "kernelsrc/" -f elf -o kernelbin/loader.o kernelsrc/loader.asm
@@ -16,7 +13,7 @@ cd ../..
 cp kernelsrc/pdclib/pdclib.a kernelbin/pdclib.a
 
 echo "    -   Compiling kernel.."
-gcc -I "kernelsrc/pdclib/*/" -o kernelbin/kernel.o -c kernelsrc/kernel.c -nostdlib -nostartfiles -nodefaultlibs #-masm=intel
+gcc -I "kernelsrc/pdclib/*/" -I "kernelsrc/pdclib/internals/" -o kernelbin/kernel.o -c kernelsrc/kernel.c -nostdlib -nostartfiles -nodefaultlibs #-masm=intel
 
 echo "    -   Linking.."
 ld -T kernelsrc/linker.ld -o kernelbin/os.bin kernelbin/loader.o kernelbin/kernel.o kernelbin/pdclib.a
