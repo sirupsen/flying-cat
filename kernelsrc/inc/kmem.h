@@ -8,7 +8,7 @@
 
 void* kmem_alloc_ptr = (void*)KERNEL_MEM_START;
 
-void* malloc(int size)
+void* kmalloc(int size)
 {
 	if(kmem_alloc_ptr + size > (void*)KERNEL_MEM_END)
 		panic("Out of kernel memory");
@@ -20,7 +20,7 @@ void* malloc(int size)
 	return mem;
 }
 
-void free(void* ptr)
+void kfree(void* ptr)
 {
 	return; // very simple memory manager, we don't bother about freeing
 }
