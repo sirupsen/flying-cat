@@ -13,7 +13,6 @@
 
 void kmain(multiboot_info_t* mbi, unsigned int magic)
 {
-	panic("D:");
 	k_clear_screen();
 
 	if (magic != 0x2BADB002)
@@ -27,13 +26,13 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
 
 	k_print("Trying malloc()...\n");
 	void* m = malloc(100);
-	if(m != NULL)
+	if(m == 1)
 	{
-		k_print("Malloc succeeded!\n");
+		k_print("bingo\n");
 	}
 	else
 	{
-		k_print("Malloc failed.\n");
+		k_print("nope\n");
 	}
 
 	for(;;); // hang

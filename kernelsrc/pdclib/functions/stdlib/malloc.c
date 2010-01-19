@@ -34,108 +34,109 @@ void * malloc( size_t size )
         size = _PDCLIB_MINALLOC;
     }
     {
-    struct _PDCLIB_memnode_t * current = _PDCLIB_memlist.first;
-    struct _PDCLIB_memnode_t * previous = NULL;
-    struct _PDCLIB_memnode_t * firstfit = NULL;
-    struct _PDCLIB_memnode_t * firstfit_previous = NULL;
-    /* Trying exact fit */
-    while ( current != NULL )
-    {
-        if ( current->size == size )
-        {
-            /* Found exact fit, allocate node */
-            if ( previous != NULL )
-            {
-                /* Node in the middle of the list */
-                previous->next = current->next;
-            }
-            else
-            {
-                /* Node is first in list */
-                _PDCLIB_memlist.first = current->next;
-            }
-            if ( _PDCLIB_memlist.last == current )
-            {
-                /* Node is last in list */
-                _PDCLIB_memlist.last = previous;
-            }
-            return (char *)current + sizeof( struct _PDCLIB_memnode_t );
-        }
-        else if ( current->size > size && ( firstfit == NULL || current->size < firstfit->size ) )
-        {
-            /* Remember previous node in case we do not get an exact fit.
-               Note that this is the node *pointing to* the first fit,
-               as we need that for allocating (i.e., changing next pointer).
-            */
-            firstfit_previous = previous;
-            firstfit = current;
-        }
-        /* Skip to next node */
-        previous = current;
-        current = current->next;
+		struct _PDCLIB_memnode_t * current = _PDCLIB_memlist.first;
+		struct _PDCLIB_memnode_t * previous = NULL;
+		struct _PDCLIB_memnode_t * firstfit = NULL;
+		struct _PDCLIB_memnode_t * firstfit_previous = NULL;
+		/* Trying exact fit */
+		while ( current != NULL )
+		{
+		    if ( current->size == size )
+		    {
+		        /* Found exact fit, allocate node */
+		        if ( previous != NULL )
+		        {
+		            /* Node in the middle of the list */
+		            previous->next = current->next;
+		        }
+		        else
+		        {
+		            /* Node is first in list */
+		            _PDCLIB_memlist.first = current->next;
+		        }
+		        if ( _PDCLIB_memlist.last == current )
+		        {
+		            /* Node is last in list */
+		            _PDCLIB_memlist.last = previous;
+		        }
+		        return (char *)current + sizeof( struct _PDCLIB_memnode_t );
+		    }
+		    else if ( current->size > size && ( firstfit == NULL || current->size < firstfit->size ) )
+		    {
+		        /* Remember previous node in case we do not get an exact fit.
+		           Note that this is the node *pointing to* the first fit,
+		           as we need that for allocating (i.e., changing next pointer).
+		        */
+		        firstfit_previous = previous;
+		        firstfit = current;
+		    }
+		    /* Skip to next node */
+		    previous = current;
+		    current = current->next;
+		}
+		/* No exact fit; go for first fit */
+		if ( firstfit != NULL )
+		{
+		    if ( ( firstfit->size - size ) > _PDCLIB_MINALLOC )
+		    {
+		        /* Oversized - split into two nodes */
+		        struct _PDCLIB_memnode_t * newnode = (struct _PDCLIB_memnode_t *)( (char *)firstfit + sizeof( struct _PDCLIB_memnode_t ) + size );
+		        newnode->size = firstfit->size - size - sizeof( struct _PDCLIB_memnode_t );
+		        newnode->next = firstfit->next;
+		        firstfit->next = newnode;
+		        firstfit->size = firstfit->size - newnode->size - sizeof( struct _PDCLIB_memnode_t );
+		    }
+		    if ( firstfit_previous != NULL )
+		    {
+		        /* Node in the middle of the list */
+		        firstfit_previous->next = firstfit->next;
+		    }
+		    else
+		    {
+		        /* Node is first in list */
+		        _PDCLIB_memlist.first = firstfit->next;
+		    }
+		    if ( _PDCLIB_memlist.last == firstfit )
+		    {
+		        /* Node is last in list */
+		        _PDCLIB_memlist.last = firstfit_previous;
+		    }
+		    return (char *)firstfit + sizeof( struct _PDCLIB_memnode_t );
+		}
     }
-    /* No exact fit; go for first fit */
-    if ( firstfit != NULL )
+    
     {
-        if ( ( firstfit->size - size ) > _PDCLIB_MINALLOC )
-        {
-            /* Oversized - split into two nodes */
-            struct _PDCLIB_memnode_t * newnode = (struct _PDCLIB_memnode_t *)( (char *)firstfit + sizeof( struct _PDCLIB_memnode_t ) + size );
-            newnode->size = firstfit->size - size - sizeof( struct _PDCLIB_memnode_t );
-            newnode->next = firstfit->next;
-            firstfit->next = newnode;
-            firstfit->size = firstfit->size - newnode->size - sizeof( struct _PDCLIB_memnode_t );
-        }
-        if ( firstfit_previous != NULL )
-        {
-            /* Node in the middle of the list */
-            firstfit_previous->next = firstfit->next;
-        }
-        else
-        {
-            /* Node is first in list */
-            _PDCLIB_memlist.first = firstfit->next;
-        }
-        if ( _PDCLIB_memlist.last == firstfit )
-        {
-            /* Node is last in list */
-            _PDCLIB_memlist.last = firstfit_previous;
-        }
-        return (char *)firstfit + sizeof( struct _PDCLIB_memnode_t );
-    }
-    }
-    {
-    /* No fit possible; how many additional pages do we need? */
-    int pages = ( ( size + sizeof( struct _PDCLIB_memnode_t ) - 1 ) / _PDCLIB_PAGESIZE ) + 1;
-    /* Allocate more pages */
-    struct _PDCLIB_memnode_t * newnode = (struct _PDCLIB_memnode_t *)_PDCLIB_allocpages( pages );
-    if ( newnode != NULL )
-    {
-        newnode->next = NULL;
-        newnode->size = pages * _PDCLIB_PAGESIZE - sizeof( struct _PDCLIB_memnode_t );
-        if ( ( newnode->size - size ) > ( _PDCLIB_MINALLOC + sizeof( struct _PDCLIB_memnode_t ) ) )
-        {
-            /* Oversized - split into two nodes */
-            struct _PDCLIB_memnode_t * splitnode = (struct _PDCLIB_memnode_t *)( (char *)newnode + sizeof( struct _PDCLIB_memnode_t ) + size );
-            splitnode->size = newnode->size - size - sizeof( struct _PDCLIB_memnode_t );
-            newnode->size = size;
-            /* Add splitted node as last element to free node list */
-            if ( _PDCLIB_memlist.last == NULL )
-            {
-                _PDCLIB_memlist.first = splitnode;
-            }
-            else
-            {
-                _PDCLIB_memlist.last->next = splitnode;
-            }
-	    splitnode->next = NULL; /* TODO: This is bug #1514883, uncovered by testdriver yet. */
-            _PDCLIB_memlist.last = splitnode;
-        }
-        return (char *)newnode + sizeof( struct _PDCLIB_memnode_t );
-    }
+		/* No fit possible; how many additional pages do we need? */
+		int pages = ( ( size + sizeof( struct _PDCLIB_memnode_t ) - 1 ) / _PDCLIB_PAGESIZE ) + 1;
+		/* Allocate more pages */
+		struct _PDCLIB_memnode_t * newnode = (struct _PDCLIB_memnode_t *)_PDCLIB_allocpages( pages );
+		if ( newnode != NULL )
+		{
+		    newnode->next = NULL;
+		    newnode->size = pages * _PDCLIB_PAGESIZE - sizeof( struct _PDCLIB_memnode_t );
+		    if ( ( newnode->size - size ) > ( _PDCLIB_MINALLOC + sizeof( struct _PDCLIB_memnode_t ) ) )
+		    {
+		        /* Oversized - split into two nodes */
+		        struct _PDCLIB_memnode_t * splitnode = (struct _PDCLIB_memnode_t *)( (char *)newnode + sizeof( struct _PDCLIB_memnode_t ) + size );
+		        splitnode->size = newnode->size - size - sizeof( struct _PDCLIB_memnode_t );
+		        newnode->size = size;
+		        /* Add splitted node as last element to free node list */
+		        if ( _PDCLIB_memlist.last == NULL )
+		        {
+		            _PDCLIB_memlist.first = splitnode;
+		        }
+		        else
+		        {
+		            _PDCLIB_memlist.last->next = splitnode;
+		        }
+				splitnode->next = NULL; /* TODO: This is bug #1514883, uncovered by testdriver yet. */
+		        _PDCLIB_memlist.last = splitnode;
+		    }
+		    return (char *)newnode + sizeof( struct _PDCLIB_memnode_t );
+		}
     }
     /* No fit, heap extension not possible - out of memory */
-    return NULL;
+    return 1;
 }
 
 #endif
