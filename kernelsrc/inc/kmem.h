@@ -8,8 +8,8 @@
 	#include <_PDCLIB_config.h>
 #endif
 
-#define KERNEL_MEM_START	0x7E00
-#define KERNEL_MEM_END		0x7FFF
+void* KERNEL_MEM_START 	= (void*) 0x7E00;
+void* KERNEL_MEM_END 	= (void*)0x7FFFF;
 
 void* kmem_alloc_ptr = (void*)KERNEL_MEM_START;
 
@@ -17,17 +17,12 @@ void* _PDCLIB_allocpages( int const n )
 {
     void* ret = kmem_alloc_ptr;
     kmem_alloc_ptr += ( n * _PDCLIB_PAGESIZE );
-    if ( kmem_alloc_ptr < (void*)KERNEL_MEM_END )
-    {
-        /* successful */
-        return ret;
-    }
-    else
-    {
-        /* out of memory */
-        //panic("Out of memory in _PDCLIB_allocpages()");
-        return (void*)0;
-    }
+    
+    if ( kmem_alloc_ptr < KERNEL_MEM_END )
+		return ret;
+	
+    panic("Out of memory in _PDCLIB_allocpages()");
+    return (void*)0;
 }
 
 #endif

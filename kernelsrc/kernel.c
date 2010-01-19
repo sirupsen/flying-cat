@@ -26,7 +26,7 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
 
 	k_print("Trying malloc()...\n");
 	void* m = malloc(100);
-	if(m == 1)
+	if(m == (void*)1)
 	{
 		k_print("bingo\n");
 	}

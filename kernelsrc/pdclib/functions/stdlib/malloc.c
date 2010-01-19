@@ -110,8 +110,9 @@ void * malloc( size_t size )
 		int pages = ( ( size + sizeof( struct _PDCLIB_memnode_t ) - 1 ) / _PDCLIB_PAGESIZE ) + 1;
 		/* Allocate more pages */
 		struct _PDCLIB_memnode_t * newnode = (struct _PDCLIB_memnode_t *)_PDCLIB_allocpages( pages );
+		
 		if ( newnode != NULL )
-		{
+		{			
 		    newnode->next = NULL;
 		    newnode->size = pages * _PDCLIB_PAGESIZE - sizeof( struct _PDCLIB_memnode_t );
 		    if ( ( newnode->size - size ) > ( _PDCLIB_MINALLOC + sizeof( struct _PDCLIB_memnode_t ) ) )
@@ -136,7 +137,7 @@ void * malloc( size_t size )
 		}
     }
     /* No fit, heap extension not possible - out of memory */
-    return 1;
+    return NULL;
 }
 
 #endif
