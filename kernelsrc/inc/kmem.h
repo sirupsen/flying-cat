@@ -21,7 +21,10 @@ void* _PDCLIB_allocpages( int const n )
     if ( kmem_alloc_ptr < KERNEL_MEM_END )
 		return ret;
 	
-    panic("Out of memory in _PDCLIB_allocpages()");
+	if(n == 1)
+	    panic("Out of memory in _PDCLIB_allocpages(1)");
+	    
+	panic("Out of memory in _PDCLIB_allocpages()");
     return (void*)0;
 }
 
