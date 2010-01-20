@@ -44,6 +44,13 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
 		free(m);
 	}
 
+	while(1)
+	{
+		k_print("test");
+		int j;
+		for(j = 0; j < 1000000; j++) ;
+	}
+
 	// testing lua :D
 	//lua_State* L = lua_open();
 	

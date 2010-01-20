@@ -1,6 +1,8 @@
 #ifndef SCRN_H
 #define SCRN_H
 
+#include <string.h>
+
 void k_clear_screen() 
 {
 	char* vram = (char*)(0xb8000+(80*25*2) - 1);
@@ -28,6 +30,13 @@ void k_printc(char* s, char color)
 		{
 			row++;
 			col = 0;
+		}
+		
+		if(row == 25)
+		{
+			memmove((void*)0xb8000, (void*)0xb8000+160, 80*2*25);
+			memset((void*)0xb8000+(80*2*24), 0, 80*2);
+			row = 24;
 		}
 		
 		s++;
