@@ -2,14 +2,11 @@
 
 cd kernelsrc/lua/src
 make clean
-make generic
 
-rm liblua.a
-
-ar rcu liblua.a lapi.o lcode.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o \
-				lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o  \
-				lundump.o lvm.o lzio.o
-				
-cp liblua.a ../../../kernelbin/liblua.a
+#gcc -I "../../../kernelsrc/pdclib/*/" -I "../../../kernelsrc/pdclib/internals/" -I "kernelsrc/lua/src/" -o ../../../kernelbin/liblua.a \
+#	-nostdlib -nostartfiles \
+#		lapi.* lcode.* ldebug.* ldo.* ldump.* lfunc.* lgc.* llex.* lmem.* \
+#		lobject.* lopcodes.* lparser.* lstate.* lstring.* ltable.* ltm.*  \
+#		lundump.* lvm.* lzio.*
 
 cd ../../..

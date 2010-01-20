@@ -10,37 +10,38 @@ void k_clear_screen()
 		*vram-- = 0;
 }
 
+char scrn_col = 0; // we only need a byte to represent the col
+char scrn_row = 0; // ditto
+
+void k_putc(char c)
+{
+	// If newline
+	if (c != '\n')
+	{
+		// setup a short pointer (short = 2 bytes) pointing to the char+attr
+		// bitshift the color to the higher byte of the short and add the character.
+		// (reverse order than normal since x86 uses the little endian format)
+		*(short*)(0xb8000 + (scrn_row * 80 + scrn_col++) * 2) = c + (color<<8);
+	}
+		
+	if (c == '\n' || scrn_col == 80)
+	{
+		scrn_row++;
+		scrn_col = 0;
+	}
+	
+	if(scrn_row == 25)
+	{
+		memmove((void*)0xb8000, (void*)0xb8000+160, 80*2*25);
+		memset((void*)0xb8000+(80*2*24), 0, 80*2);
+		scrn_row = 24;
+	}
+}
+
 void k_printc(char* s, char color) 
 {
-	static char col = 0; // we only need a byte to represent the col
-	static char row = 0; // ditto
-
 	while(*s)
-	{
-		// If newline
-		if (*s != '\n')
-		{
-			// setup a short pointer (short = 2 bytes) pointing to the char+attr
-			// bitshift the color to the higher byte of the short and add the character.
-			// (reverse order than normal since x86 uses the little endian format)
-			*(short*)(0xb8000 + (row * 80 + col++) * 2) = *s + (color<<8);
-		}
-			
-		if (*s == '\n' || col == 80)
-		{
-			row++;
-			col = 0;
-		}
-		
-		if(row == 25)
-		{
-			memmove((void*)0xb8000, (void*)0xb8000+160, 80*2*25);
-			memset((void*)0xb8000+(80*2*24), 0, 80*2);
-			row = 24;
-		}
-		
-		s++;
-	}
+		k_putc(*s++);
 }
 
 void k_print(char* s)

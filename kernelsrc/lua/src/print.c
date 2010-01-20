@@ -30,15 +30,15 @@ static void PrintString(const TString* ts)
   int c=s[i];
   switch (c)
   {
-   case '"': printf("\\\""); break;
-   case '\\': printf("\\\\"); break;
-   case '\a': printf("\\a"); break;
-   case '\b': printf("\\b"); break;
-   case '\f': printf("\\f"); break;
-   case '\n': printf("\\n"); break;
-   case '\r': printf("\\r"); break;
-   case '\t': printf("\\t"); break;
-   case '\v': printf("\\v"); break;
+   case '"': k_print("\\\""); break;
+   case '\\': k_print("\\\\"); break;
+   case '\a': k_print("\\a"); break;
+   case '\b': k_print("\\b"); break;
+   case '\f': k_print("\\f"); break;
+   case '\n': k_print("\\n"); break;
+   case '\r': k_print("\\r"); break;
+   case '\t': k_print("\\t"); break;
+   case '\v': k_print("\\v"); break;
    default:	if (isprint((unsigned char)c))
    			putchar(c);
 		else
