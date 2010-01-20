@@ -17,6 +17,8 @@ char* num2hex(uint n)
 		str[i] = hexchars[n % 16];
 		n /= 16;
 	}
+	
+	return str;
 }
 
 #endif
