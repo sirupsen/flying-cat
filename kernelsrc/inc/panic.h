@@ -1,7 +1,7 @@
 #ifndef PANIC_H
 #define PANIC_H
 
-void panic(char* msg)
+void kpanic(char* msg)
 {
 	char* vram = (char*)0xb8000;
 

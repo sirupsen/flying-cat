@@ -3,9 +3,12 @@
 #include "inc/scrn.h"
 #include "inc/panic.h"
 #include "inc/kmem.h"
+#include "inc/numfmt.h"
 
 // Lua
-#include "lua/src/lua.h"
+//#include <lua.c>
+//#include <lauxlib.c>
+//#include <lualib.c>
 
 // PDCLib
 #include <stdlib.h>
@@ -16,7 +19,7 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
 	k_clear_screen();
 
 	if (magic != 0x2BADB002)
-		panic(OS_NAME " was not booted correctly.");
+		kpanic(OS_NAME " was not booted correctly.");
 
 	k_print("Hello, World!\n");
 	k_print("This is " OS_NAME " (c) Turbsen 2010\n\n");
@@ -28,14 +31,23 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
 
 	k_print("Trying malloc()...\n");
 	void* m = malloc(100);
-	if(m == (void*)1)
+	if(m == NULL)
 	{
-		k_print("bingo\n");
+		k_print("malloc failed\n");
 	}
 	else
 	{
-		k_print("nope\n");
+		char* addr = (char*)num2hex((uint)m);
+		k_print(addr);
+		k_print("\n");
+		free(addr);
+		free(m);
 	}
 
+	// testing lua :D
+	//lua_State* L = lua_open();
+	
 	for(;;); // hang
 }
+
+

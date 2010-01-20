@@ -2,6 +2,7 @@
 #define NUMFMT_H
 
 #include <stdlib.h>
+#include <string.h>
 #include "consts.h"
 
 char hexchars[] = "0123456789ABCDEF";
