@@ -93,7 +93,7 @@ freebsd:
 	$(MAKE) all MYCFLAGS="-DLUA_USE_LINUX" MYLIBS="-Wl,-E -lreadline"
 
 generic:
-	$(MAKE) all MYCFLAGS=
+	$(MAKE) all MYCFLAGS="-I 'kernelsrc/pdclib/*/' -I 'kernelsrc/pdclib/internals/' -nostdlib -nostartfiles -nodefaultlibs"
 
 linux:
 	$(MAKE) all MYCFLAGS=-DLUA_USE_LINUX MYLIBS="-Wl,-E -ldl -lreadline -lhistory -lncurses"

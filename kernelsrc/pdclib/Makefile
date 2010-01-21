@@ -40,10 +40,10 @@ todolist:
 	-@for file in $(ALLFILES); do grep -H TODO $$file; done; true
 
 %.o: %.c Makefile
-	@$(CC) -Wall -DNDEBUG -MMD -MP -MT "$*.d $*.t" -g -std=c99 -I./includes -I./internals -c $< -o $@
+	@$(CC) -Wall -DNDEBUG -MMD -MP -MT "$*.d $*.t" -g -std=c99 -I./includes -I./internals -nostdlib -nostartfiles -nodefaultlibs -c $< -o $@
 
 %.t: %.c Makefile pdclib.a
-	@$(CC) -Wall -DTEST -std=c99 -I./includes -I./internals $< pdclib.a -o $@
+	@$(CC) -Wall -DTEST -std=c99 -I./includes -I./internals pdclib.a -nostdlib -nostartfiles -nodefaultlibs $< -o $@
 
 %.r: %.c Makefile
-	@$(CC) -Wall -DTEST -DREGTEST -std=c99 -I./internals $< -o $@
+	@$(CC) -Wall -DTEST -DREGTEST -std=c99 -I./internals -nostdlib -nostartfiles -nodefaultlibs $< -o $@

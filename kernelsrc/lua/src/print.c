@@ -22,6 +22,7 @@
 
 static void PrintString(const TString* ts)
 {
+ /*
  const char* s=getstr(ts);
  size_t i,n=ts->tsv.len;
  putchar('"');
@@ -46,10 +47,13 @@ static void PrintString(const TString* ts)
   }
  }
  putchar('"');
+ */
+ return;
 }
 
 static void PrintConstant(const Proto* f, int i)
 {
+ /*
  const TValue* o=&f->k[i];
  switch (ttype(o))
  {
@@ -65,14 +69,17 @@ static void PrintConstant(const Proto* f, int i)
   case LUA_TSTRING:
 	PrintString(rawtsvalue(o));
 	break;
-  default:				/* cannot happen */
+  default:				// cannot happen
 	printf("? type=%d",ttype(o));
 	break;
  }
+ */
+ return;
 }
 
 static void PrintCode(const Proto* f)
 {
+ /*
  const Instruction* code=f->code;
  int pc,n=f->sizecode;
  for (pc=0; pc<n; pc++)
@@ -153,6 +160,8 @@ static void PrintCode(const Proto* f)
   }
   printf("\n");
  }
+ */
+ return;
 }
 
 #define SS(x)	(x==1)?"":"s"
@@ -160,6 +169,7 @@ static void PrintCode(const Proto* f)
 
 static void PrintHeader(const Proto* f)
 {
+ /*
  const char* s=getstr(f->source);
  if (*s=='@' || *s=='=')
   s++;
@@ -188,10 +198,13 @@ static void PrintConstants(const Proto* f)
   PrintConstant(f,i);
   printf("\n");
  }
+ */
+ return;
 }
 
 static void PrintLocals(const Proto* f)
 {
+ /*
  int i,n=f->sizelocvars;
  printf("locals (%d) for %p:\n",n,VOID(f));
  for (i=0; i<n; i++)
@@ -199,10 +212,13 @@ static void PrintLocals(const Proto* f)
   printf("\t%d\t%s\t%d\t%d\n",
   i,getstr(f->locvars[i].varname),f->locvars[i].startpc+1,f->locvars[i].endpc+1);
  }
+ */
+ return;
 }
 
 static void PrintUpvalues(const Proto* f)
 {
+ /*
  int i,n=f->sizeupvalues;
  printf("upvalues (%d) for %p:\n",n,VOID(f));
  if (f->upvalues==NULL) return;
@@ -210,10 +226,13 @@ static void PrintUpvalues(const Proto* f)
  {
   printf("\t%d\t%s\n",i,getstr(f->upvalues[i]));
  }
+ */
+ return;
 }
 
 void PrintFunction(const Proto* f, int full)
 {
+ /*
  int i,n=f->sizep;
  PrintHeader(f);
  PrintCode(f);
@@ -224,4 +243,6 @@ void PrintFunction(const Proto* f, int full)
   PrintUpvalues(f);
  }
  for (i=0; i<n; i++) PrintFunction(f->p[i],full);
+ */
+ return;
 }

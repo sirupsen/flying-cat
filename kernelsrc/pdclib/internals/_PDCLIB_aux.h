@@ -50,7 +50,7 @@
 #endif
 
 #if _PDCLIB_C_VERSION != 99
-#error PDCLib might not be fully conforming to either C89 or C95 prior to v2.x.
+//#error PDCLib might not be fully conforming to either C89 or C95 prior to v2.x.
 #endif
 
 /* -------------------------------------------------------------------------- */

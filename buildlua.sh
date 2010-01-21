@@ -1,12 +1,11 @@
 #!/bin/bash
 
-cd kernelsrc/lua/src
-make clean
+echo "Don't use this script for now"
 
-#gcc -I "../../../kernelsrc/pdclib/*/" -I "../../../kernelsrc/pdclib/internals/" -I "kernelsrc/lua/src/" -o ../../../kernelbin/liblua.a \
-#	-nostdlib -nostartfiles \
-#		lapi.* lcode.* ldebug.* ldo.* ldump.* lfunc.* lgc.* llex.* lmem.* \
-#		lobject.* lopcodes.* lparser.* lstate.* lstring.* ltable.* ltm.*  \
-#		lundump.* lvm.* lzio.*
+#cd kernelsrc/lua/src
+#make clean > /dev/null
 
-cd ../../..
+#gcc -I "../../pdclib/includes/" -I "../../pdclib/internals/" -o luabuild.o -nostdlib -nostartfiles -nodefaultlibs -c edfcmaster.h
+#cp luabuild.o ../../../kernelbin/lua.o
+
+#cd ../../..

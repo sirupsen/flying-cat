@@ -5,12 +5,14 @@
 #include "inc/kmem.h"
 #include "inc/numfmt.h"
 
-// Lua
-#include <lua.h>
-
 // PDCLib
 #include <stdlib.h>
 #include <string.h>
+
+// Lua
+#include "lua/src/lua.h"
+#include "lua/src/lauxlib.h"
+#include "lua/src/lualib.h"
 
 void kmain(multiboot_info_t* mbi, unsigned int magic)
 {
@@ -41,9 +43,6 @@ void kmain(multiboot_info_t* mbi, unsigned int magic)
 		free(addr);
 		free(m);
 	}
-	
-	lua_State* L = lua_open();
-	lua_close(L);
 	
 	for(;;); // hang
 }

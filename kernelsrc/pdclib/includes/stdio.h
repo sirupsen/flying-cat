@@ -19,6 +19,8 @@
 #include <_PDCLIB_aux.h>
 #endif
 
+#include <stdarg.h>
+
 typedef void * FILE;
 
 extern void * stderr;
@@ -26,5 +28,20 @@ extern void * stderr;
 int printf( const char * _PDCLIB_restrict format, ... );
 int fputs( const char * _PDCLIB_restrict s, FILE * _PDCLIB_restrict stream );
 int puts( const char * _PDCLIB_restrict s );
+
+// ED: Flying Cat
+// Added the vsprintf function from linux-0.1 [GPL]
+int vsprintf(char *buf, const char *fmt, va_list vargs);
+
+int sprintf(char *buf, const char *fmt, ...)
+{
+	va_list vargs;
+	va_start(vargs, fmt);
+	
+	int ret = vsprintf(buf, fmt, vargs);
+	
+	va_end(vargs);
+	return ret;
+}
 
 #endif

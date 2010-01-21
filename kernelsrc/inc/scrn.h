@@ -13,7 +13,7 @@ void k_clear_screen()
 char scrn_col = 0; // we only need a byte to represent the col
 char scrn_row = 0; // ditto
 
-void k_putc(char c)
+void k_putc(char c, char color)
 {
 	// If newline
 	if (c != '\n')
@@ -37,11 +37,14 @@ void k_putc(char c)
 		scrn_row = 24;
 	}
 }
-
+void k_put(char c)
+{
+	k_putc(c, 0x07);
+}
 void k_printc(char* s, char color) 
 {
 	while(*s)
-		k_putc(*s++);
+		k_putc(*s++, color);
 }
 
 void k_print(char* s)
