@@ -27,8 +27,6 @@
 #if defined(__STRICT_ANSI__)
 #define LUA_ANSI
 #endif
-// ED: Flying Cat
-#define LUA_ANSI
 
 
 #if !defined(LUA_ANSI) && defined(_WIN32)
@@ -53,7 +51,6 @@
 @* Interfaces Extension (XSI).
 ** CHANGE it (define it) if your system is XSI compatible.
 */
-#undef LUA_USE_POSIX
 #if defined(LUA_USE_POSIX)
 #define LUA_USE_MKSTEMP
 #define LUA_USE_ISATTY
@@ -232,7 +229,8 @@
 #define lua_stdin_is_tty()	isatty(0)
 #elif defined(LUA_WIN)
 #include <io.h>
-#include <stdio.h>
+// ED: Flying Cat
+//#include <stdio.h>
 #define lua_stdin_is_tty()	_isatty(_fileno(stdin))
 #else
 #define lua_stdin_is_tty()	1  /* assume stdin is a tty */
@@ -274,7 +272,8 @@
 ** GNU readline and history facilities).
 */
 #if defined(LUA_USE_READLINE)
-#include <stdio.h>
+// ED: Flying Cat
+//#include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #define lua_readline(L,b,p)	((void)L, ((b)=readline(p)) != NULL)
@@ -531,7 +530,7 @@
 /*
 @@ The luai_num* macros define the primitive operations over numbers.
 */
-#if defined(LUA_CORE)
+//#if defined(LUA_CORE)
 #include <math.h>
 #define luai_numadd(a,b)	((a)+(b))
 #define luai_numsub(a,b)	((a)-(b))
@@ -544,7 +543,7 @@
 #define luai_numlt(a,b)		((a)<(b))
 #define luai_numle(a,b)		((a)<=(b))
 #define luai_numisnan(a)	(!luai_numeq((a), (a)))
-#endif
+//#endif
 
 
 /*

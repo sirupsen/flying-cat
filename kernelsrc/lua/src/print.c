@@ -10,7 +10,8 @@
 #define luac_c
 #define LUA_CORE
 
-#include "ldebug.h"
+// ED: Flying Cat
+//#include "ldebug.h"
 #include "lobject.h"
 #include "lopcodes.h"
 #include "lundump.h"
@@ -22,6 +23,7 @@
 
 static void PrintString(const TString* ts)
 {
+ // ED: Flying Cat
  /*
  const char* s=getstr(ts);
  size_t i,n=ts->tsv.len;
@@ -31,15 +33,15 @@ static void PrintString(const TString* ts)
   int c=s[i];
   switch (c)
   {
-   case '"': k_print("\\\""); break;
-   case '\\': k_print("\\\\"); break;
-   case '\a': k_print("\\a"); break;
-   case '\b': k_print("\\b"); break;
-   case '\f': k_print("\\f"); break;
-   case '\n': k_print("\\n"); break;
-   case '\r': k_print("\\r"); break;
-   case '\t': k_print("\\t"); break;
-   case '\v': k_print("\\v"); break;
+   case '"': printf("\\\""); break;
+   case '\\': printf("\\\\"); break;
+   case '\a': printf("\\a"); break;
+   case '\b': printf("\\b"); break;
+   case '\f': printf("\\f"); break;
+   case '\n': printf("\\n"); break;
+   case '\r': printf("\\r"); break;
+   case '\t': printf("\\t"); break;
+   case '\v': printf("\\v"); break;
    default:	if (isprint((unsigned char)c))
    			putchar(c);
 		else
@@ -48,11 +50,11 @@ static void PrintString(const TString* ts)
  }
  putchar('"');
  */
- return;
 }
 
 static void PrintConstant(const Proto* f, int i)
 {
+ // ED: Flying Cat
  /*
  const TValue* o=&f->k[i];
  switch (ttype(o))
@@ -74,9 +76,9 @@ static void PrintConstant(const Proto* f, int i)
 	break;
  }
  */
- return;
 }
 
+// ED: Flying Cat
 static void PrintCode(const Proto* f)
 {
  /*
@@ -161,7 +163,6 @@ static void PrintCode(const Proto* f)
   printf("\n");
  }
  */
- return;
 }
 
 #define SS(x)	(x==1)?"":"s"
@@ -186,10 +187,12 @@ static void PrintHeader(const Proto* f)
 	S(f->maxstacksize),S(f->nups));
  printf("%d local%s, %d constant%s, %d function%s\n",
 	S(f->sizelocvars),S(f->sizek),S(f->sizep));
+ */
 }
 
 static void PrintConstants(const Proto* f)
 {
+ /*
  int i,n=f->sizek;
  printf("constants (%d) for %p:\n",n,VOID(f));
  for (i=0; i<n; i++)
@@ -199,7 +202,6 @@ static void PrintConstants(const Proto* f)
   printf("\n");
  }
  */
- return;
 }
 
 static void PrintLocals(const Proto* f)
@@ -213,7 +215,6 @@ static void PrintLocals(const Proto* f)
   i,getstr(f->locvars[i].varname),f->locvars[i].startpc+1,f->locvars[i].endpc+1);
  }
  */
- return;
 }
 
 static void PrintUpvalues(const Proto* f)
@@ -227,7 +228,6 @@ static void PrintUpvalues(const Proto* f)
   printf("\t%d\t%s\n",i,getstr(f->upvalues[i]));
  }
  */
- return;
 }
 
 void PrintFunction(const Proto* f, int full)
@@ -244,5 +244,4 @@ void PrintFunction(const Proto* f, int full)
  }
  for (i=0; i<n; i++) PrintFunction(f->p[i],full);
  */
- return;
 }

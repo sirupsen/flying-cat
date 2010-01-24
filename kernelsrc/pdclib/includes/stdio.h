@@ -21,6 +21,8 @@
 
 #include <stdarg.h>
 
+#define BUFSIZ 1024
+
 typedef void * FILE;
 
 extern void * stderr;
@@ -33,15 +35,6 @@ int puts( const char * _PDCLIB_restrict s );
 // Added the vsprintf function from linux-0.1 [GPL]
 int vsprintf(char *buf, const char *fmt, va_list vargs);
 
-int sprintf(char *buf, const char *fmt, ...)
-{
-	va_list vargs;
-	va_start(vargs, fmt);
-	
-	int ret = vsprintf(buf, fmt, vargs);
-	
-	va_end(vargs);
-	return ret;
-}
+int sprintf(char *buf, const char *fmt, ...);
 
 #endif

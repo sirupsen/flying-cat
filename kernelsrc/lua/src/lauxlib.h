@@ -5,12 +5,15 @@
 */
 
 
+#define BUFSIZ 1024
+
 #ifndef lauxlib_h
 #define lauxlib_h
 
 
 #include <stddef.h>
-#include <stdio.h>
+// ED: Flying Cat
+//#include <stdio.h>
 
 #include "lua.h"
 

@@ -7,7 +7,8 @@
 
 
 #include <ctype.h>
-#include <stdio.h>
+// ED: Flying Cat
+//#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -28,24 +29,28 @@
 ** model but changing `fputs' to put the strings at a proper place
 ** (a console window or a log file, for instance).
 */
+// ED: Flying Cat
+// Removing function
 static int luaB_print (lua_State *L) {
-  int n = lua_gettop(L);  /* number of arguments */
+  /*
+  int n = lua_gettop(L);  // number of arguments
   int i;
   lua_getglobal(L, "tostring");
   for (i=1; i<=n; i++) {
     const char *s;
-    lua_pushvalue(L, -1);  /* function to be called */
-    lua_pushvalue(L, i);   /* value to print */
+    lua_pushvalue(L, -1);  // function to be called
+    lua_pushvalue(L, i);   // value to print
     lua_call(L, 1, 1);
-    s = lua_tostring(L, -1);  /* get result */
+    s = lua_tostring(L, -1);  // get result
     if (s == NULL)
       return luaL_error(L, LUA_QL("tostring") " must return a string to "
                            LUA_QL("print"));
     if (i>1) fputs("\t", stdout);
     fputs(s, stdout);
-    lua_pop(L, 1);  /* pop result */
+    lua_pop(L, 1);  // pop result
   }
   fputs("\n", stdout);
+  */
   return 0;
 }
 

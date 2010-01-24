@@ -6,7 +6,8 @@
 
 
 #include <signal.h>
-#include <stdio.h>
+// ED: Flying Cat
+//#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -40,6 +41,7 @@ static void laction (int i) {
 
 
 static void print_usage (void) {
+  /*
   fprintf(stderr,
   "usage: %s [options] [script [args]].\n"
   "Available options are:\n"
@@ -52,13 +54,16 @@ static void print_usage (void) {
   ,
   progname);
   fflush(stderr);
+  */
 }
 
 
 static void l_message (const char *pname, const char *msg) {
+  /*
   if (pname) fprintf(stderr, "%s: ", pname);
   fprintf(stderr, "%s\n", msg);
   fflush(stderr);
+  */
 }
 
 
@@ -175,21 +180,24 @@ static int incomplete (lua_State *L, int status) {
 
 
 static int pushline (lua_State *L, int firstline) {
+  /*
   char buffer[LUA_MAXINPUT];
   char *b = buffer;
   size_t l;
   const char *prmt = get_prompt(L, firstline);
   if (lua_readline(L, b, prmt) == 0)
-    return 0;  /* no input */
+    return 0;  // no input
   l = strlen(b);
-  if (l > 0 && b[l-1] == '\n')  /* line ends with newline? */
-    b[l-1] = '\0';  /* remove it */
-  if (firstline && b[0] == '=')  /* first line starts with `=' ? */
-    lua_pushfstring(L, "return %s", b+1);  /* change it to `return' */
+  if (l > 0 && b[l-1] == '\n')  // line ends with newline?
+    b[l-1] = '\0';  // remove it
+  if (firstline && b[0] == '=')  // first line starts with `=' ?
+    lua_pushfstring(L, "return %s", b+1);  // change it to `return'
   else
     lua_pushstring(L, b);
   lua_freeline(L, b);
   return 1;
+  */
+  return 0;
 }
 
 
@@ -214,13 +222,14 @@ static int loadline (lua_State *L) {
 
 
 static void dotty (lua_State *L) {
+  /*
   int status;
   const char *oldprogname = progname;
   progname = NULL;
   while ((status = loadline(L)) != -1) {
     if (status == 0) status = docall(L, 0, 0);
     report(L, status);
-    if (status == 0 && lua_gettop(L) > 0) {  /* any result to print? */
+    if (status == 0 && lua_gettop(L) > 0) {  // any result to print?
       lua_getglobal(L, "print");
       lua_insert(L, 1);
       if (lua_pcall(L, lua_gettop(L)-1, 0, 0) != 0)
@@ -229,10 +238,11 @@ static void dotty (lua_State *L) {
                                lua_tostring(L, -1)));
     }
   }
-  lua_settop(L, 0);  /* clear stack */
+  lua_settop(L, 0);  // clear stack
   fputs("\n", stdout);
   fflush(stdout);
   progname = oldprogname;
+  */
 }
 
 
