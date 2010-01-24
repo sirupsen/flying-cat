@@ -13,7 +13,7 @@ cd ../..
 cp kernelsrc/pdclib/pdclib.a kernelbin/pdclib.a
 
 echo "    -   Compiling kernel.."
-gcc -I "kernelsrc/pdclib/*/" -I "kernelsrc/pdclib/internals/" -I "kernelsrc/lua/src/" -o kernelbin/kernel.o -c kernelsrc/kernel.c -nostdlib -nostartfiles -nodefaultlibs #-masm=intel
+gcc -I "kernelsrc/pdclib/*/" -I "kernelsrc/pdclib/internals/" -I "kernelsrc/lua/src/" -I "kernelsrc/inc" -o kernelbin/kernel.o -c kernelsrc/kernel.c -nostdlib -nostartfiles -nodefaultlibs #-masm=intel
 
 echo "    -   Linking.."
 ld -T kernelsrc/linker.ld -o kernelbin/os.bin kernelbin/loader.o kernelbin/kernel.o kernelbin/pdclib.a

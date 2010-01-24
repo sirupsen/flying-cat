@@ -46,7 +46,7 @@
 
 #include <llimits.h>
 
-#include <lmathlib.c>
+//#include <lmathlib.c>
 
 #include <lmem.h>
 #include <lmem.c>
