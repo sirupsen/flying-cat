@@ -3,57 +3,57 @@ global longjmp
 
 setjmp:
 
-	pushl	ebp
-	movl	esp,ebp
+	push	ebp
+	mov		ebp, esp
 
-	pushl	edi
-	movl	8 (ebp),edi
+	push	edi
+	mov		edi, [ebp+8]
 
-	movl	eax,0 (edi)
-	movl	ebx,4 (edi)
-	movl	ecx,8 (edi)
-	movl	edx,12 (edi)
-	movl	esi,16 (edi)
+	mov		[edi], eax
+	mov		[edi+4], ebx
+	mov		[edi+8], ecx
+	mov		[edi+12], edx
+	mov		[edi+16], esi
 
-	movl	-4 (ebp),eax
-	movl	eax,20 (edi)
+	mov		eax, [ebp-4]
+	mov		[edi+20], eax
 
-	movl	0 (ebp),eax
-	movl	eax,24 (edi)
+	mov		eax, [ebp+0]
+	mov		[edi+24], eax
 
-	movl	esp,eax
-	addl	$12,eax
-	movl	eax,28 (edi)
+	mov		eax, esp
+	add		eax, 12
+	mov 	[edi+28], eax
 	
-	movl	4 (ebp),eax
-	movl	eax,32 (edi)
+	mov		eax, [ebp+4]
+	mov		[edi+32], eax
 
-	popl	edi
-	movl	$0,eax
+	pop		edi
+	mov		eax, 0
 	leave
 	ret
 
 longjmp:
-	pushl	ebp
-	movl	esp,ebp
+	push	ebp
+	mov		ebp, esp
 
-	movl	8(ebp),edi
-	movl	12(ebp),eax
-	movl	eax,0(edi)
+	mov		edi, [ebp+8]
+	mov		eax, [ebp+12]
+	mov		[edi+0], eax
 
-	movl	24(edi),ebp
+	mov		ebp, [edi+24]
 
-       __CLI
-	movl	28(edi),esp
+    cli
+	mov		esp, [edi+28]
 	
-	pushl	32(edi)	
+	push	long[edi+32]
 
-	movl	0(edi),eax
-	movl	4(edi),ebx
-	movl	8(edi),ecx
-	movl	12(edi),edx
-	movl	16(edi),esi
-	movl	20(edi),edi
-       __STI
+	mov	eax, [edi+0]
+	mov	ebx, [edi+4]
+	mov	ecx, [edi+8]
+	mov	edx, [edi+12]
+	mov	esi, [edi+16]
+	mov	edi, [edi+20]
+    sti
 
 	ret
