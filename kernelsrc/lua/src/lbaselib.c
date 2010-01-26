@@ -6,7 +6,7 @@
 
 
 
-#include <ctype.h>
+#include "../../pdclib/includes/ctype.h"
 // ED: Flying Cat
 //#include <stdio.h>
 #include <stdlib.h>

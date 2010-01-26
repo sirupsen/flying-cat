@@ -28,10 +28,13 @@ typedef _PDCLIB_size_t size_t;
 
 /* Numeric conversion functions */
 
+// DONE: strtod()
+double strtod(const char*, char**);
+
 /* TODO: atof(), strtof(), strtod(), strtold() */
 
 double atof( const char * nptr );
-double strtod( const char * _PDCLIB_restrict nptr, char * * _PDCLIB_restrict endptr );
+//double strtod( const char * _PDCLIB_restrict nptr, char * * _PDCLIB_restrict endptr );
 float strtof( const char * _PDCLIB_restrict nptr, char * * _PDCLIB_restrict endptr );
 long double strtold( const char * _PDCLIB_restrict nptr, char * * _PDCLIB_restrict endptr );
 

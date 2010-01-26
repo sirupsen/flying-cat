@@ -11,7 +11,7 @@
 #define _PDCLIB_INT_H _PDCLIB_INT_H
 #include <_PDCLIB_int.h>
 #include <ctype.h>
-#include <errno.h>
+//#include <errno.h>
 #include <string.h>
 
 _PDCLIB_uintmax_t _PDCLIB_strtox_main( const char ** p, unsigned int base, _PDCLIB_uintmax_t error, _PDCLIB_uintmax_t limval, _PDCLIB_uintmax_t limdigit, char * sign )
@@ -29,12 +29,12 @@ _PDCLIB_uintmax_t _PDCLIB_strtox_main( const char ** p, unsigned int base, _PDCL
         }
         else
         {
-            errno = ERANGE;
-            /* TODO: Only if endptr != NULL - but do we really want *another* parameter? */
+            //errno = ERANGE;
+            // TODO: Only if endptr != NULL - but do we really want *another* parameter?
             while ( memchr( _PDCLIB_digits, tolower(**p), base ) != NULL ) ++(*p);
-            /* TODO: This is ugly, but keeps caller from negating the error value */
+            // TODO: This is ugly, but keeps caller from negating the error value
             *sign = '+';
-            return error;
+            return -1;
         }
     }
     if ( digit == -1 )
@@ -45,6 +45,7 @@ _PDCLIB_uintmax_t _PDCLIB_strtox_main( const char ** p, unsigned int base, _PDCL
     return rc;
 }
 
+/*
 #ifdef TEST
 #include <_PDCLIB_test.h>
 #include <errno.h>
@@ -56,24 +57,24 @@ int main()
     char fail[] = "xxx";
     char sign = '-';
     BEGIN_TESTS;
-    /* basic functionality */
+    // basic functionality
     p = test;
     errno = 0;
     TESTCASE( _PDCLIB_strtox_main( &p, 10, 999, 12, 3, &sign ) == 123 );
     TESTCASE( errno == 0 );
     TESTCASE( p == &test[3] );
-    /* proper functioning to smaller base */
+    // proper functioning to smaller base
     p = test;
     TESTCASE( _PDCLIB_strtox_main( &p, 8, 999, 12, 3, &sign ) == 0123 );
     TESTCASE( errno == 0 );
     TESTCASE( p == &test[3] );
-    /* overflowing subject sequence must still return proper endptr */
+    // overflowing subject sequence must still return proper endptr
     p = test;
     TESTCASE( _PDCLIB_strtox_main( &p, 4, 999, 1, 2, &sign ) == 999 );
     TESTCASE( errno == ERANGE );
     TESTCASE( p == &test[3] );
     TESTCASE( sign == '+' );
-    /* testing conversion failure */
+    // testing conversion failure
     errno = 0;
     p = fail;
     sign = '-';
@@ -83,3 +84,4 @@ int main()
 }
 
 #endif
+*/

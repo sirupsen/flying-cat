@@ -51,6 +51,8 @@
 #include <lmem.h>
 #include <lmem.c>
 
+#include <loadlib.c>
+
 #include <lobject.h>
 #include <lobject.c>
 
@@ -70,6 +72,8 @@
 
 #include <ltable.h>
 #include <ltable.c>
+
+#include <ltablib.c>
 
 #include <ltm.h>
 #include <ltm.c>

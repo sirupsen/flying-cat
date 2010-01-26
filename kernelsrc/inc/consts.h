@@ -2,11 +2,9 @@
 #define CONSTS_H
 
 #define OS_NAME "Flying Cat"
-#define NULL (void*)0
 
-//typedef size_t unsigned int;
-//typedef uint unsigned int;
-//typedef ushort unsigned short;
-//typedef ulong unsigned long;
+typedef unsigned int uint;
+typedef unsigned short ushort;
+typedef unsigned long ulong;
 
 #endif

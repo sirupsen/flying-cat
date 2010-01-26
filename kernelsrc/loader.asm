@@ -19,18 +19,18 @@ MultiBootHeader:
 STACKSIZE equ 0x4000 ; a 16 kb kernel stack shouldn't be completely neccessary, as Lua keeps it's own stack. We'll keep it 16 just in case.
  
 loader:
-   mov esp, stack+STACKSIZE           ; set up the stack
-   push eax                           ; pass Multiboot magic number
-   push ebx                           ; pass Multiboot info structure
+	mov esp, stack+STACKSIZE	; set up the stack
+	push eax 					; pass Multiboot magic number
+	push ebx					; pass Multiboot info structure
  
-   call  kmain                       ; call kernel proper
+	call  kmain					; call kernel proper
  
-   cli
+	cli
 hang:
-   hlt                                ; halt machine should kernel return
-   jmp   hang
+	hlt							; halt machine should kernel return
+	jmp   hang
  
 section .bss
 align 4
 stack:
-   resb STACKSIZE                     ; reserve 16k stack on a doubleword boundary
+	resb STACKSIZE				; reserve 16k stack on a doubleword boundary
