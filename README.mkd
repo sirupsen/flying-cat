@@ -3,6 +3,8 @@ Project Flying Cat
 
 A modular, lua-based operating system project based on [Return Infinity BareMetal OS](http://www.returninfinity.com/baremetal.html)
 
+This project includes code from [Return Infinity](http://www.returninfinity.com/), namely BareMetal OS and the Pure64 bootloader. Without the hard work of Ian Seyler, this project would not have been possible.
+
 ## Building Flying Cat
 The following software is required to successfully build Flying Cat:
 
