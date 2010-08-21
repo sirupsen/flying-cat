@@ -1,5 +1,0 @@
-timeout		10
-
-# Flying Cat
-title Flying Cat
-kernel /boot/fc_krnl
