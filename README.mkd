@@ -1,9 +1,7 @@
 Project Flying Cat
 ==================
 
-A modular, lua-based operating system project.
-
-By [Turbsen](http://turbsen.info "Go to website for Turbsen")
+A modular, lua-based operating system project based on [Return Infinity BareMetal OS](http://www.returninfinity.com/baremetal.html)
 
 ## Building Flying Cat
 The following software is required to successfully build Flying Cat:
