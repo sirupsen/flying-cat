@@ -1,0 +1,32 @@
+Project Flying Cat
+==================
+
+A modular, lua-based operating system project.
+
+By [Turbsen](http://turbsen.info "Go to website for Turbsen")
+
+## Building Flying Cat
+The following software is required to successfully build Flying Cat:
+
+* [NASM](http://www.nasm.us/) (Assembler)
+* [GCC](http://gcc.gnu.org/) (C compiler)
+* [LD](http://en.wikipedia.org/wiki/GNU_linker) (linker)
+* [mkfs](http://en.wikipedia.org/wiki/Mkfs) (creates filesystem)
+* mkfs.vfat (fat for mkfs)
+* [GRUB](http://www.gnu.org/software/grub/) (bootloader)
+* [sudo](http://www.sudo.ws/) (the build script can be edited to remove the sudo dependency, however it then must be run as root)
+* [Make](http://www.gnu.org/software/make/)
+
+Additionally, your system must support loopback devices and some parts of the `build.sh` build script require superuser privileges.
+
+## Running Flying Cat
+Flying Cat is built as a floppy disk image which can be run in a Virtual Machine, or written to a physical floppy disk to be booted from.
+
+Naturally, any VM software should be able to run Flying Cat, although the included `run.sh` script is designed for [QEMU](http://qemu.org "Go to website for Qemu to download it").
+
+You should be able to get a boot going in QEMU by simply running:
+> $ ./run.sh
+
+Otherwise you want to run `build.sh` and manually mount the image in VM of choice, other Virtual Machines include [Virtualbox](http://virtualbox.org) and [VMWare](http://vmware.com), note however that Flying Cat has *not* been tested in these.
+
+Should you be unable to compile it yourself, you can use the precompiled `floppy.img` included in the source, note however, that this might not be the most recent build.
